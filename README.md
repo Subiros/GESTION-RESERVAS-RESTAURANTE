@@ -32,7 +32,7 @@ Technologies for this project are still being defined, but may include:
 
 ## 📅 Roadmap
 
-- [ ] Initial project setup  
+- [x] Initial project setup  
 - [ ] Reservation database structure  
 - [ ] Basic CRUD for reservations  
 - [ ] Table management system  
