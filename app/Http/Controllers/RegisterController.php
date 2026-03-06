@@ -10,6 +10,9 @@ use App\Models\User;
 class RegisterController extends Controller
 {
     //
+    public function getRegister() {
+        return view('register');
+    }
 
     public function register_send(Request $request) {
         $request->validate([

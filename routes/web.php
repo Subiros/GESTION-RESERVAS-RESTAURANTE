@@ -2,23 +2,45 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ClientController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+// RUTAS SIN SESION
+Route::get('/login', [LoginController::class, 'getLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login_send'])->name('login.post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+Route::get('/register', [RegisterController::class, 'getRegister'])->name('register');
 Route::post('/register', [RegisterController::class, 'register_send'])->name('register.post');
 
-Route::get('/reservar-mesa', function () {
-    return view('reservar-mesa');
-})->middleware(['auth'])->name('reservar-mesa');
+Route::middleware(['auth'])->group(function () {
+    // RUTAS ADMIN
+    Route::prefix('admin')->group(function () {
+
+        Route::get('/', function () {
+            abort_if(auth()->user()->email !== 'admin2@admin.com', 403);
+            return view('admin-view');
+        })->name('admin-view');
+
+        Route::get('/mesas', function () {
+            abort_if(auth()->user()->email !== 'admin2@admin.com', 403);
+            return view('admin-mesas');
+        });
+
+        Route::get('/reservas', function () {
+            abort_if(auth()->user()->email !== 'admin2@admin.com', 403);
+            return view('admin-reservas');
+        });
+
+    });
+
+    // RUTAS CON SESION CLIENTE
+    Route::get('/reservar-mesa', [ClientController::class, 'reservarMesa'])->name('reservar-mesa');
+
+});

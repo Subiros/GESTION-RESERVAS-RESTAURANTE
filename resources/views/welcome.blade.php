@@ -10,9 +10,17 @@
 
     <div class="min-h-screen flex items-center justify-center">
         <div class="flex flex-col items-center gap-4">
-            <h1 class="text-xl font-semibold">
-                Gestión de Reservas
-            </h1>
+            @guest
+                <h1 class="text-xl font-semibold">
+                    Inicia sesión para:
+                </h1>
+            @endguest
+
+            @auth
+                <h1 class="text-xl font-semibold">
+                    Gestión de tu Reserva
+                </h1>
+            @endauth
 
             <div class="flex gap-4">
                 <a href="/reservar-mesa" class="bg-gray-800 hover:bg-gray-600 transition duration-300 text-white px-4 py-2 rounded">
@@ -24,6 +32,18 @@
                 </a>
             </div>
 
+            @auth
+                @if(Auth::user()->email == 'admin2@admin.com')
+                    <a href="/admin" class="hover:shadow-xl transition duration-300">Panel para Administradores</a>
+                @endif
+
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" class="hover:shadow-xl transition duration-300 cursor-pointer">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            @endauth
         </div>
     </div>
 

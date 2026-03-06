@@ -18,7 +18,7 @@
                     <label for="correo">
                         Mail: 
                     </label>
-                    <input type="mail" name="correo" required class="border rounded-lg px-1 bg-[#E6E6E6]">
+                    <input type="mail" name="correo" required value="{{ old('mail') }}" class="border rounded-lg px-1 bg-[#E6E6E6]">
                 </div>
 
                 <div class="text-center mt-2 m-3">

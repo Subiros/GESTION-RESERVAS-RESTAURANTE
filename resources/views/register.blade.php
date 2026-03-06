@@ -19,21 +19,21 @@
                     <label for="name">
                         Nombre
                     </label>
-                    <input type="text" name="name" required class="border rounded-lg px-1 bg-[#E6E6E6]">
+                    <input type="text" name="name" required value="{{ old('name') }}" class="border rounded-lg px-1 bg-[#E6E6E6]">
                 </div>
                 
                 <div class="text-center mt-2 m-3">
                     <label for="surname">
                         Apellido(s)
                     </label>
-                    <input type="text" name="surname" required class="border rounded-lg px-1 bg-[#E6E6E6]">
+                    <input type="text" name="surname" required value="{{ old('surname') }}" class="border rounded-lg px-1 bg-[#E6E6E6]">
                 </div>
                 
                 <div class="text-center mt-2 m-3">
                     <label for="mail">
                         Mail
                     </label>
-                    <input type="mail" name="mail" required class="border rounded-lg px-1 bg-[#E6E6E6]">
+                    <input type="mail" name="mail" required value="{{ old('mail') }}" class="border rounded-lg px-1 bg-[#E6E6E6]">
                 </div>
                 
                 <div class="text-center mt-2 m-3">
@@ -63,7 +63,7 @@
                     <div class="bg-red-100 text-red-800 p-2 rounded-full mt-3 text-sm text-center">
                         <ul>
                             @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li>- {{ $error }}</li>
                             @endforeach
                         </ul>
                     </div>

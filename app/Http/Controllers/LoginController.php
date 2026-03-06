@@ -9,6 +9,18 @@ class LoginController extends Controller
 {
     //
 
+    public function getLogin() {
+        return view('login');
+    }
+    public function logout(Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
     public function login_send(Request $request) {
         $credenciales = $request->validate([
             'correo' => ['required', 'email'],
@@ -17,7 +29,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $credenciales['correo'], 'password' => $credenciales['password']])) {
             $request->session()->regenerate();
-            return redirect()->intended('/welcome');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
