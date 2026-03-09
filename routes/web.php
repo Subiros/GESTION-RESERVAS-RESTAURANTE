@@ -21,24 +21,10 @@ Route::post('/register', [RegisterController::class, 'register_send'])->name('re
 
 Route::middleware(['auth'])->group(function () {
     // RUTAS ADMIN
-    Route::prefix('admin')->group(function () {
 
-        Route::get('/', function () {
-            abort_if(auth()->user()->email !== 'admin2@admin.com', 403);
-            return view('admin-view');
-        })->name('admin-view');
+    Route::get('/admin', [AdminController::class, 'getAdminPanel'])->name('admin-panel');
 
-        Route::get('/mesas', function () {
-            abort_if(auth()->user()->email !== 'admin2@admin.com', 403);
-            return view('admin-mesas');
-        });
-
-        Route::get('/reservas', function () {
-            abort_if(auth()->user()->email !== 'admin2@admin.com', 403);
-            return view('admin-reservas');
-        });
-
-    });
+    Route::get('/admin/add-table', [AdminController::class, 'getAddTableView'])->name('add-table');
 
     // RUTAS CON SESION CLIENTE
     Route::get('/reservar-mesa', [ClientController::class, 'reservarMesa'])->name('reservar-mesa');

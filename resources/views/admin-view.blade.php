@@ -14,8 +14,8 @@
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
             viewBox="0 0 24 24">
-            <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
-        </svg>
+                <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
+            </svg>
 
 
             @csrf
@@ -23,6 +23,8 @@
                 Cerrar Sesión
             </button>
         </form>
+
+        <!-- GESTIONES DE ADMIN -->
 
         <div class="h-[50vh] border-2 border-[#b57238]  rounded-lg flex items-center justify-center bg-white mb-2">
             GESTIÓN DE MESAS DEL RESTAURANTE
@@ -33,8 +35,29 @@
                 AFORO
             </div>
 
-            <div class="flex-1 border-2 border-[#b57238] rounded-lg flex items-center justify-center bg-white">
-                CONFIGURACION RAPIDA DE MESAS
+            <div class="flex-1 border-2 border-[#b57238] rounded-lg bg-white">
+                <div>
+                    <h1 class="text-center font-bold">CONFIGURACION RAPIDA DE MESAS</h1>
+                    <div class="flex justify-end gap-2 mr-2">
+                        <a href="/admin/add-table" onclick="window.open(this.href,'popup','width='+(screen.width/2)+',height='+(screen.height/2)); return false;">
+                            <svg class="w-6 h-6 text-amber-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                            </svg>
+                        </a>
+                        <div class="refreshButton" onclick="location.reload()">
+                            <svg class="w-6 h-6 text-amber-800 hover:cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    @foreach ($tables as $table)
+                        <p>Mesa: {{$table->name}} </p>
+                    @endforeach
+                </div>
             </div>
         </div>
 
