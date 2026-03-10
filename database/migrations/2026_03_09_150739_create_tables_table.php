@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('name')->unique();
             $table->integer('persons_number');
-            $table->boolean('booked');
+            $table->boolean('booked')->default(false);
             $table->timestamp('start_booking')->nullable();
             $table->timestamp('end_booking')->nullable();
+            $table->timestamps();
         });
     }
 

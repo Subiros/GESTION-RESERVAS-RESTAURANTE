@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'getAdminPanel'])->name('admin-panel');
 
     Route::get('/admin/add-table', [AdminController::class, 'getAddTableView'])->name('add-table');
+    Route::post('/admin/add-table', [AdminController::class, 'setAddTable'])->name('add-table.post');
 
     // RUTAS CON SESION CLIENTE
     Route::get('/reservar-mesa', [ClientController::class, 'reservarMesa'])->name('reservar-mesa');

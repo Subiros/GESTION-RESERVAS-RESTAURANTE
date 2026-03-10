@@ -28,4 +28,14 @@ class AdminController extends Controller
 
         return view('add-table');
     }
+    public function setAddTable(Request $request) {
+        $datos = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'persons_number' => ['required', 'integer', 'min:1']
+        ]);
+
+        Table::create($datos);
+
+        return back()->with('success', 'Taula creada correctament');
+    }
 }

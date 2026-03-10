@@ -8,7 +8,7 @@
 </head>
 <body class="bg-[#eba860]">
 
-    <div class="min-h-screen p-2 pt-0 flex flex-col">
+    <div class="h-screen p-2 pt-0 flex flex-col">
         <form action="/logout" method="POST" class="m-0 text-xs text-amber-900 flex">
             <svg class="w-[20px] h-[20px] text-amber-800" aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
@@ -35,8 +35,8 @@
                 AFORO
             </div>
 
-            <div class="flex-1 border-2 border-[#b57238] rounded-lg bg-white">
-                <div>
+            <div class="flex-1 border-2 border-[#b57238] rounded-lg bg-white flex flex-col">
+                <div class="p-2">
                     <h1 class="text-center font-bold">CONFIGURACION RAPIDA DE MESAS</h1>
                     <div class="flex justify-end gap-2 mr-2">
                         <a href="/admin/add-table" onclick="window.open(this.href,'popup','width='+(screen.width/2)+',height='+(screen.height/2)); return false;">
@@ -53,10 +53,45 @@
 
                 </div>
 
-                <div>
-                    @foreach ($tables as $table)
-                        <p>Mesa: {{$table->name}} </p>
-                    @endforeach
+                <div class="flex-1 max-h-[calc(50vh-110px)] overflow-y-auto overflow-x-auto p-2">
+                    <div class="border rounded-lg">
+                        <table class="min-w-full text-sm text-left text-gray-700 table-fixed border rounded-lg overflow-hidden">
+                            <thead class="bg-gray-200 sticky top-0">
+                                <tr>
+                                    <th class="px-4 py-2 font-medium text-gray-900 border-b border-gray-300">Mesa</th>
+                                    <th class="px-4 py-2 font-medium text-gray-900 border-b border-gray-300">Personas</th>
+                                    <th class="px-4 py-2 font-medium text-gray-900 border-b border-gray-300">Reservadas</th>
+                                    <th class="px-4 py-2 font-medium text-gray-900 border-b border-gray-300">Gestiones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($tables as $table)
+                                    <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                                        <td class="px-4 py-2">{{$table->name}}</td>
+                                        <td class="px-4 py-2">{{$table->persons_number}}</td>
+                                        @if ($table->booked == false) 
+                                            <td class="px-4 py-2">No Reservada</td>
+                                            @else <td class="px-4 py-2">Reservada</td>
+                                        @endif
+                                        <td>
+                                            <div class="flex">
+                                                <a href="#">
+                                                    <svg class="w-6 h-6 text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                                                    </svg>
+                                                </a>
+                                                <a href="#">
+                                                    <svg class="w-6 h-6 text-red-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
