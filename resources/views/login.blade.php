@@ -7,7 +7,7 @@
     <title>Login</title>
 </head>
 <body>
-    <div style="background-image: url('/img/bf-img-login.jpg'); no-repeat; background-size: cover; background-position: center;"  class="min-h-screen flex flex-col items-center justify-center">
+    <div style="background-image: url('/img/image-mesh-gradient.png'); no-repeat; background-size: cover; background-position: center;"  class="min-h-screen flex flex-col items-center justify-center">
         <div class="bg-[#b57238] p-5 border-2 border-solid rounded-lg mr-2 ml-2 shadow-2xl shadow-white">
             <h1 class="text-2xl text-center pb-2">
                 Inicia Sesión

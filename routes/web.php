@@ -27,6 +27,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/add-table', [AdminController::class, 'getAddTableView'])->name('add-table');
     Route::post('/admin/add-table', [AdminController::class, 'setAddTable'])->name('add-table.post');
 
+    Route::get('/admin/edit-table/{id}', [AdminController::class, 'getEditTableView'])->name('edit-table');
+    Route::post('/admin/edit-table/{id}', [AdminController::class, 'setEditTable'])->name('edit-table.post');
+
+    Route::post('/delete-table/{id}', [AdminController::class, 'setDeleteTable'])->name('delete-table.post');
+
     // RUTAS CON SESION CLIENTE
     Route::get('/reservar-mesa', [ClientController::class, 'reservarMesa'])->name('reservar-mesa');
 
